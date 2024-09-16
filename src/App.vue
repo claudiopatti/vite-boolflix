@@ -17,7 +17,8 @@ import AppMain from './components/AppMain.vue';
 export default {
   data() {
     return { 
-      store: store
+      store: store,
+      
       
     }
   },
@@ -27,11 +28,14 @@ export default {
     AppMain
   },
   methods: {
-    performSearch() {
+    performSearchFilm() {
       axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch)
+      .get('https://api.themoviedb.org/3/search/movie?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
         .then((res) => {
-          console.log(res.data.results)
+          // console.log(res.data.results)
+          // if (res.data.results.original_language  ) {
+            
+          // }
     
           this.store.cardsFimls = res.data.results
         })
@@ -39,11 +43,37 @@ export default {
           this.store.cardsFilms = []
         })
 
+      // axios
+      // .get('https://api.themoviedb.org/3/search/tv?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
+      //   .then((res) => {
+      //     console.log(res.data.results)
+    
+      //     this.store.cardsSerieTv = res.data.results
+      //   })
+      //   .catch((err) => {
+      //     this.store.cardsSerieTv = []
+      //   })
+
+    },
+    performSearchSeries() {
+      axios
+      .get('https://api.themoviedb.org/3/search/tv?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
+        .then((res) => {
+          console.log(res.data.results)
+    
+          this.store.cardsSerieTv = res.data.results
+        })
+        .catch((err) => {
+          this.store.cardsSerieTv = []
+        })
     }
   },
   
   created() {
-    this.performSearch()
+    this.performSearchFilm(),
+    this.performSearchSeries()
+
+
   }
 }
 </script>
@@ -51,7 +81,7 @@ export default {
 <template>
   <div>
     <!-- 3) Utilizzo del componente -->
-    <AppHeader @search="performSearch()" />
+    <AppHeader @search="performSearchFilm(), performSearchSeries() " />
 
     <AppMain />
     
