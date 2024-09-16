@@ -27,17 +27,23 @@ export default {
     AppMain
   },
   methods: {
+    performSearch() {
+      axios
+      .get('https://api.themoviedb.org/3/search/movie?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch)
+        .then((res) => {
+          console.log(res.data.results)
+    
+          this.store.cardsFimls = res.data.results
+        })
+        .catch((err) => {
+          this.store.cardsFilms = []
+        })
+
+    }
   },
   
   created() {
-    axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=f4209377e7b8796244aae146220bb25c&query=batman')
-      .then((res) => {
-        console.log(res.data.results)
-
-        this.store.cardsFimls = res.data.results
-      })
-
+    this.performSearch()
   }
 }
 </script>
@@ -45,7 +51,7 @@ export default {
 <template>
   <div>
     <!-- 3) Utilizzo del componente -->
-    <AppHeader />
+    <AppHeader @search="performSearch()" />
 
     <AppMain />
     

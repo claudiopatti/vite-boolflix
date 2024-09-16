@@ -1,14 +1,17 @@
 <script>
+import { store } from '../store';
+import axios from 'axios';
+
+
 export default {
   data() {
     return { 
-      
+      store: store,
     }
   },
   methods: {
     search() {
-      console.log('stai cercando')
-
+      this.$emit('search')
     }
   }
 }
@@ -23,7 +26,7 @@ export default {
 
       <form @submit.prevent="search()" class="d-flex">
         
-        <input type="text" class="my-2" placeholder="Seacrh">
+        <input v-model="store.filmSearch" type="text" class="my-2" placeholder="Seacrh">
   
         <button class="text-uppercase btn btn-warning my-2">
           search
