@@ -4,23 +4,29 @@ export default {
     return { 
       
     }
+  },
+  methods: {
+    search() {
+      console.log('stai cercando')
+
+    }
   }
 }
 </script>
 
 <template>
   <header class="bg-black">
-    <div class="container d-flex justify-content-between py-2">
+    <div class="container d-flex justify-content-between align-items-center py-2">
       <h1 class="text-danger text-uppercase">
         bootflix
       </h1>
 
-      <form action="">
+      <form @submit.prevent="search()" class="d-flex">
         
         <input type="text" class="my-2" placeholder="Seacrh">
   
-        <button>
-  
+        <button class="text-uppercase btn btn-warning my-2">
+          search
         </button>
       </form>
 
