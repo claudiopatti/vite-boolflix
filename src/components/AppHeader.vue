@@ -2,30 +2,32 @@
 export default {
   data() {
     return { 
-      message: 'Template Vite + Vue'
+      
     }
   }
 }
 </script>
 
 <template>
-  <header>
-    <h1>
-      {{ message }}
-    </h1>
+  <header class="bg-black">
+    <div class="container d-flex justify-content-between py-2">
+      <h1 class="text-danger text-uppercase">
+        bootflix
+      </h1>
+
+      <form action="">
+        
+        <input type="text" class="my-2" placeholder="Seacrh">
+  
+        <button>
+  
+        </button>
+      </form>
+
+    </div>
   </header>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
-
-header {
-  background-color: $mainBgColor;
-  text-align: center;
-  padding: 20px 0;
-}
-
-h1 {
-  color: $mainColor;
-}
 </style>
