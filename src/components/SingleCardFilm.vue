@@ -74,22 +74,16 @@ export default {
     <h5>
         <!-- {{ (vote / 2).toFixed(0) }} -->
         <span v-if="(vote / 2).toFixed(0) == 5" >
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
+            <i v-for="(star, i ) in 5 " :key="i" class="fa-solid fa-star text-warning"></i>
         </span>
 
         <span v-else-if="(vote / 2).toFixed(0) == 4" >
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
-            <i class="fa-solid fa-star text-warning"></i>
+            <i v-for="(star, i ) in 4 " :key="i" class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star"></i>
         </span>
 
         <span v-else-if="(vote / 2).toFixed(0) == 3" >
+
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>
             <i class="fa-solid fa-star text-warning"></i>

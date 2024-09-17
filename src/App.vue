@@ -18,6 +18,7 @@ export default {
   data() {
     return { 
       store: store,
+      apiKey: 'f4209377e7b8796244aae146220bb25c',
       
       
     }
@@ -30,7 +31,12 @@ export default {
   methods: {
     performSearchFilm() {
       axios
-      .get('https://api.themoviedb.org/3/search/movie?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
+      .get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: this.apiKey,
+          query: this.store.filmSearch
+        }
+      } )
         .then((res) => {
           // console.log(res.data.results)
           // if (res.data.results.original_language  ) {
@@ -41,23 +47,15 @@ export default {
         })
         .catch((err) => {
           this.store.cardsFilms = []
-        })
+        });
 
-      // axios
-      // .get('https://api.themoviedb.org/3/search/tv?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
-      //   .then((res) => {
-      //     console.log(res.data.results)
-    
-      //     this.store.cardsSerieTv = res.data.results
-      //   })
-      //   .catch((err) => {
-      //     this.store.cardsSerieTv = []
-      //   })
-
-    },
-    performSearchSeries() {
-      axios
-      .get('https://api.themoviedb.org/3/search/tv?api_key=f4209377e7b8796244aae146220bb25c&query=' + this.store.filmSearch )
+        axios
+      .get('https://api.themoviedb.org/3/search/tv', {
+        params: {
+          api_key: this.apiKey,
+          query: this.store.filmSearch
+        }
+      }  )
         .then((res) => {
           console.log(res.data.results)
     
@@ -66,12 +64,31 @@ export default {
         .catch((err) => {
           this.store.cardsSerieTv = []
         })
-    }
+        
+
+    },
+    // performSearchSeries() {
+    //   axios
+    //   .get('https://api.themoviedb.org/3/search/tv', {
+    //     params: {
+    //       api_key: this.apiKey,
+    //       query: this.store.filmSearch
+    //     }
+    //   }  )
+    //     .then((res) => {
+    //       console.log(res.data.results)
+    
+    //       this.store.cardsSerieTv = res.data.results
+    //     })
+    //     .catch((err) => {
+    //       this.store.cardsSerieTv = []
+    //     })
+    // }
   },
   
   created() {
-    this.performSearchFilm(),
-    this.performSearchSeries()
+    this.performSearchFilm()
+    // this.performSearchSeries()
 
 
   }
@@ -81,7 +98,7 @@ export default {
 <template>
   <div>
     <!-- 3) Utilizzo del componente -->
-    <AppHeader @search="performSearchFilm(), performSearchSeries() " />
+    <AppHeader @search="performSearchFilm() " />
 
     <AppMain />
     

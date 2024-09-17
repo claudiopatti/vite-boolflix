@@ -1,7 +1,7 @@
 <script>
 import { store } from '../store.js';
-import onlySingleCardFilm from './onlySingleCardFilm.vue';
-import onlySingleCardSerieTv from './onlySingleCardSerieTv.vue';
+import SingleCardFilm from './SingleCardFilm.vue';
+import SingleCardSerieTv from './SingleCardSerieTv.vue';
 
 
 export default {
@@ -12,8 +12,8 @@ export default {
     }
   },
   components: {
-    onlySingleCardFilm,
-    onlySingleCardSerieTv
+    SingleCardFilm,
+    SingleCardSerieTv
   },
 
 }
@@ -24,13 +24,13 @@ export default {
     <div class="container">
       <div class="row">
         <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-3">
-          <onlySingleCardFilm :card = "cardFiml" :vote = "cardFiml.vote_average" />
+          <SingleCardFilm :card = "cardFiml" :vote = "cardFiml.vote_average" />
         </div>
       </div>
 
       <div class="row">
         <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-3">
-          <onlySingleCardSerieTv :cardSeries = "cardSerie" :vote = "cardSerie.vote_average" />
+          <SingleCardSerieTv :cardSeries = "cardSerie" :vote = "cardSerie.vote_average" />
         </div>
       </div>
 
