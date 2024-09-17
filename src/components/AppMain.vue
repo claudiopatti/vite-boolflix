@@ -22,14 +22,20 @@ export default {
 <template>
   <main class="bg-primary">
     <div class="container">
+      <h2 class="py-5">
+        FILM
+      </h2>
       <div class="row">
-        <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-3">
+        <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
           <SingleCardFilm :card = "cardFiml" :vote = "cardFiml.vote_average" />
         </div>
       </div>
 
+      <h2 class="my-5">
+        SERIE
+      </h2>
       <div class="row">
-        <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-3">
+        <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
           <SingleCardSerieTv :cardSeries = "cardSerie" :vote = "cardSerie.vote_average" />
         </div>
       </div>
@@ -41,4 +47,5 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+
 </style>
