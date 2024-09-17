@@ -1,29 +1,28 @@
 <script>
 // import countryFlag from './countryFlag';
-import CountryFlag from 'vue-country-flag-next'
+import CountryFlag from 'vue-country-flag-next';
+import { store } from '../store.js';
+
 
 
 
 export default {
+    props: {
+        card: Object,
+        vote: Number
+    },
     date() {
         return {
             // language: store.cardsFilms.original_language
+            store,
+            
         }
 
-    },
-    props: {
-        card: Object,
     },
     components: {
         CountryFlag
     },
     methods: {
-        changeNumberFilm() {
-        const result = this.card.vote_average / 2;
-
-        let resultFixed = result.toFixed(0)
-        return resultFixed
-      }
     },
 }
 </script>
@@ -73,7 +72,54 @@ export default {
 
     </div>
     <h5>
-        {{ changeNumberFilm() }}
+        <!-- {{ (vote / 2).toFixed(0) }} -->
+        <span v-if="(vote / 2).toFixed(0) == 5" >
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+        </span>
+
+        <span v-else-if="(vote / 2).toFixed(0) == 4" >
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star"></i>
+        </span>
+
+        <span v-else-if="(vote / 2).toFixed(0) == 3" >
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </span>
+
+        <span v-else-if="(vote / 2).toFixed(0) == 2" >
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </span>
+
+        <span v-else-if="(vote / 2).toFixed(0) == 1" >
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </span>
+
+        <span v-else >
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </span>
     </h5>
 
 </div>
