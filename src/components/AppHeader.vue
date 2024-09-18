@@ -10,6 +10,7 @@ export default {
     }
   },
   methods: {
+    //funzione creata per richiamare la chiamata in axios fatta in APP
     search() {
       this.$emit('search')
     }
@@ -26,7 +27,7 @@ export default {
 
       <form @submit.prevent="search()" class="d-flex">
         
-        <input v-model.trim="store.filmSearch" type="text" class="my-2" placeholder="Seacrh">
+        <input v-model.trim="store.FilmSerieSearch" type="text" class="my-2" placeholder="Seacrh">
   
         <button class="text-uppercase btn btn-warning my-2">
           search

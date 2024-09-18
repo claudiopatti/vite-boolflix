@@ -1,13 +1,6 @@
 <script>
 import axios from 'axios';
 
-/* 
-  Per importare ed utilizzare un componente dentro un altro devo SEMPRE seguire questi 3 passi:
-  1) Importazione del componente
-  2) Dichiarazione del componente
-  3) Utilizzo del componente
-*/
-// 1) Importazione del componente
 import { store } from './store.js';
 
 import AppHeader from './components/AppHeader.vue';
@@ -18,12 +11,12 @@ export default {
   data() {
     return { 
       store: store,
-      apiKey: 'f4209377e7b8796244aae146220bb25c',
+      // la mia ky delle api per entrare nel database dell'api in questione
+      apiKey: 'f4209377e7b8796244aae146220bb25c', 
       
       
     }
   },
-  // 2) Dichiarazione del componente
   components: {
     AppHeader,
     AppMain
@@ -35,20 +28,18 @@ export default {
       .get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: this.apiKey,
-          query: this.store.filmSearch
+          query: this.store.FilmSerieSearch
         }
-      } )
-        .then((res) => {
-          // console.log(res.data.results)
-          // if (res.data.results.original_language  ) {
-            
-          // }
-    
-          this.store.cardsFimls = res.data.results
-        })
-        .catch((err) => {
-          this.store.cardsFilms = []
-        });
+      })  
+      .then((res) => {
+  
+        this.store.cardsFimls = res.data.results
+      })
+
+      //controllo in caso di errori e risolvo con pulizia dell'array originaria
+      .catch((err) => {
+        this.store.cardsFilms = []
+      });
 
       //importazione APi per recuperare serie
 
@@ -56,51 +47,30 @@ export default {
       .get('https://api.themoviedb.org/3/search/tv', {
         params: {
           api_key: this.apiKey,
-          query: this.store.filmSearch
+          query: this.store.FilmSerieSearch
         }
-      }  )
-        .then((res) => {
-          console.log(res.data.results)
-    
-          this.store.cardsSerieTv = res.data.results
-        })
-        .catch((err) => {
-          this.store.cardsSerieTv = []
-        })
-        
+      })
+      .then((res) => {
+  
+        this.store.cardsSerieTv = res.data.results
+      })
 
+      //controllo in caso di errori e risolvo con pulizia dell'array originaria
+      .catch((err) => {
+        this.store.cardsSerieTv = []
+      })
     },
-    // performSearchSeries() {
-    //   axios
-    //   .get('https://api.themoviedb.org/3/search/tv', {
-    //     params: {
-    //       api_key: this.apiKey,
-    //       query: this.store.filmSearch
-    //     }
-    //   }  )
-    //     .then((res) => {
-    //       console.log(res.data.results)
-    
-    //       this.store.cardsSerieTv = res.data.results
-    //     })
-    //     .catch((err) => {
-    //       this.store.cardsSerieTv = []
-    //     })
-    // }
   },
   
   created() {
+    //richiamo della funzione della chiamata all'api dopo in caricamento della pagina
     this.performSearchFilm()
-    // this.performSearchSeries()
-
-
   }
 }
 </script>
 
 <template>
   <div>
-    <!-- 3) Utilizzo del componente -->
     <AppHeader @search="performSearchFilm() " />
 
     <AppMain />

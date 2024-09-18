@@ -1,7 +1,7 @@
 <script>
+// store globale da dove salviamo e prendiamo dati
 import { store } from '../store.js';
-// import SingleCardFilm from './SingleCardFilm.vue';
-// import SingleCardSerieTv from './SingleCardSerieTv.vue';
+// componente per creare singola card di film e serie tv
 import singleCardFilmSerie from './singleCardFilmSerie.vue';
 
 
@@ -13,8 +13,6 @@ export default {
     }
   },
   components: {
-    // SingleCardFilm,
-    // SingleCardSerieTv,
     singleCardFilmSerie
   },
 
@@ -28,7 +26,9 @@ export default {
         FILM
       </h2>
       <div class="row">
+        <!-- ciclo per creare le card dei film  -->
         <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
+          <!-- componente per creare singola card  -->
           <singleCardFilmSerie 
             :title="cardFiml.title" 
             :originalTitle="cardFiml.original_title" 
@@ -36,7 +36,6 @@ export default {
             :vote = "cardFiml.vote_average" 
             :overview= "cardFiml.overview"
             :posterPath="cardFiml.poster_path" /> 
-          <!-- <SingleCardFilm :card = "cardFiml" :vote = "cardFiml.vote_average" /> -->
         </div>
       </div>
 
@@ -44,15 +43,16 @@ export default {
         SERIE
       </h2>
       <div class="row">
+        <!-- ciclo per creare le card delle serie  -->
         <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
+          <!-- componente per creare singola card  -->
           <singleCardFilmSerie 
             :title="cardSerie.name" 
             :originalTitle="cardSerie.original_name" 
             :language="cardSerie.original_language" 
             :vote = "cardSerie.vote_average" 
             :overview= "cardSerie.overview"
-            :posterPath="cardSerie.poster_path" /> 
-          <!-- <SingleCardSerieTv :cardSeries = "cardSerie" :vote = "cardSerie.vote_average" /> -->
+            :posterPath="cardSerie.poster_path" />
         </div>
       </div>
 
