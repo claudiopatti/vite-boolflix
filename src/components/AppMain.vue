@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <main class="bg-primary">
+  <main class="bg-secondary ">
     <div class="container">
       <h2 class="py-5">
         FILM
@@ -47,5 +47,8 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+main {
+  min-height: calc(100vh - 72px);
+}
 
 </style>

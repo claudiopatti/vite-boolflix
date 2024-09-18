@@ -11,10 +11,12 @@ export default {
         card: Object,
         vote: Number
     },
-    date() {
+    data() {
         return {
             // language: store.cardsFilms.original_language
             store,
+            urlInitials: "https://image.tmdb.org/t/p/",
+            sizeUrl: 'w342'
             
         }
 
@@ -39,84 +41,68 @@ export default {
             
         }
     },
+    computed: {
+        imgFilmSerie() {
+            if (this.card.poster_path != null && this.card.poster_path != '') {
+                
+                return this.urlInitials + this.sizeUrl + this.card.poster_path
+            } 
+            else {
+                return '../../img/netflixlogo.png'
+            }
+        },
+
+        starYellow() {
+            return Math.ceil(this.vote / 2) 
+        },
+
+        starEmpty() {
+            return  5 - (Math.ceil(this.vote / 2)) 
+        },
+    }
 }
 </script>
 
 <template>
     <div class="container">
-        <div class="card border-0">
+        <div class="card border-0 bg-info">
         
             <div class="imgFilm ">
-                <img :src="'https://image.tmdb.org/t/p/w300/' + card.poster_path" :alt="card.original_title">
+                <img :src="imgFilmSerie" :alt="card.original_title">
             </div>
         
             <div class="infoFilm ">
 
-                <h3 >
-                    Title: {{ card.title }} 
+                <p >
+                    <span class="fs-4 fw-bold">Title:</span> {{ card.title }} 
                     <!-- {{ card.name }} -->
-                </h3>
+                </p>
             
-                <h4>
-                    Original Title: {{ card.original_title }}
+                <p>
+                    <span class="fs-4 fw-bold">Original Title:</span> {{ card.original_title }}
                     <!-- {{ card.original_name }} -->
             
-                </h4>
+                </p>
             
                 <div>
                     <CountryFlag :country='getCountryFlag(card.original_language)' size='big'/>
-            
-                    
-            
                 </div>
-                <h5>
-                    <!-- {{ (vote / 2).toFixed(0) }} -->
-                    <span v-if="(vote / 2).toFixed(0) == 5" >
-                        <i v-for="(star, i ) in 5 " :key="i" class="fa-solid fa-star text-warning"></i>
-                    </span>
-            
-                    <span v-else-if="(vote / 2).toFixed(0) == 4" >
-                        <i v-for="(star, i ) in 4 " :key="i" class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-            
-                    <span v-else-if="(vote / 2).toFixed(0) == 3" >
-            
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-            
-                    <span v-else-if="(vote / 2).toFixed(0) == 2" >
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-            
-                    <span v-else-if="(vote / 2).toFixed(0) == 1" >
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-            
-                    <span v-else >
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-                </h5>
+                
 
-                <h5>
-                    Overview: {{ card.overview }}
-                </h5>
+                <div>
+                    
+                    <span v-for="(star) in starYellow" :key="star" >
+                        <i class="fa-solid fa-star text-warning"></i>
+                    </span>
+    
+                    <span v-for="(star) in starEmpty" :key="star" >
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                </div>
+
+                <p>
+                    <span class="fs-4 fw-bold">Overview:</span> {{ card.overview }}
+                </p>
         
             </div>
         

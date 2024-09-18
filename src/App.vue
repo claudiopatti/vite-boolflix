@@ -30,6 +30,7 @@ export default {
   },
   methods: {
     performSearchFilm() {
+      //importazione APi per recuperare film
       axios
       .get('https://api.themoviedb.org/3/search/movie', {
         params: {
@@ -48,6 +49,8 @@ export default {
         .catch((err) => {
           this.store.cardsFilms = []
         });
+
+      //importazione APi per recuperare serie
 
         axios
       .get('https://api.themoviedb.org/3/search/tv', {
