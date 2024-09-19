@@ -115,13 +115,21 @@ export default {
 <style lang="scss" scoped>
 .card {
     min-height:  450px;;
-}
+    transition: 2s;
 
-.card .imgFilm > img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
+    .imgFilm {
+        transition: 2s;
+
+        > img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+    }
 }
+// .card:hover {
+// }
+
 .card:hover .imgFilm {
     display: none;
 }

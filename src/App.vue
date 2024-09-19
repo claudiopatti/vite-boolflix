@@ -28,11 +28,12 @@ export default {
       .get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: this.apiKey,
-          query: this.store.FilmSerieSearch
+          query: this.store.FilmSerieSearch,
         }
       })  
       .then((res) => {
-  
+        console.log(res.data.results[0].with_cast)
+        
         this.store.cardsFimls = res.data.results
       })
 
@@ -51,7 +52,8 @@ export default {
         }
       })
       .then((res) => {
-  
+        console.log(res.data)
+        
         this.store.cardsSerieTv = res.data.results
       })
 
@@ -62,10 +64,6 @@ export default {
     },
   },
   
-  created() {
-    //richiamo della funzione della chiamata all'api dopo in caricamento della pagina
-    this.performSearchFilm()
-  }
 }
 </script>
 

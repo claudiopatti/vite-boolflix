@@ -27,7 +27,7 @@ export default {
       </h2>
       <div class="row">
         <!-- ciclo per creare le card dei film  -->
-        <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
+        <div v-for="(cardFiml, index) in store.cardsFimls" :key="index" class="col-12 col-sm-6 col-md-4 col-lg-3 pb-5">
           <!-- componente per creare singola card  -->
           <singleCardFilmSerie 
             :title="cardFiml.title" 
@@ -44,7 +44,7 @@ export default {
       </h2>
       <div class="row">
         <!-- ciclo per creare le card delle serie  -->
-        <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-3 pb-5">
+        <div v-for="(cardSerie, index) in store.cardsSerieTv" :key="index" class="col-12 col-sm-6 col-md-4 col-lg-3 pb-5">
           <!-- componente per creare singola card  -->
           <singleCardFilmSerie 
             :title="cardSerie.name" 
