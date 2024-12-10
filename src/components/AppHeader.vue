@@ -22,7 +22,7 @@ export default {
   <header class="bg-black">
     <div class="container d-flex justify-content-between align-items-center py-2">
       <h1 class="text-danger text-uppercase">
-        bootflix
+        boolflix
       </h1>
 
       <form @submit.prevent="search()" class="d-flex">

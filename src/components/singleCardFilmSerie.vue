@@ -66,7 +66,7 @@ export default {
 
 <template>
     <div class="container">
-        <div class="card border-0 bg-info">
+        <div class="card border-0 bg-white">
     
             <div class="imgFilm ">
                 <img :src="imgFilmSerie" :alt="originalTitle">
